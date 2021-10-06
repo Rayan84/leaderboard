@@ -1,0 +1,22 @@
+.main {
+    padding: 50px;
+}
+
+.display-flex {
+    display: flex;
+}
+
+table{
+    border: solid lightcoral 1px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+tr:nth-child(odd) {
+    background: #CCC
+}
+
+tr:nth-child(even) {
+    background: #FFF
+}
