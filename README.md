@@ -1,4 +1,4 @@
-# leaderboard
+# Leaderboard
 
 Project Description
 This project aims to demonstrate medium-fidelity wireframes UI.
