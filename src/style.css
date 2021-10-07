@@ -36,8 +36,8 @@ section {
 }
 
 #refresh-button:hover {
-  background-color: #CCC; 
-  color:black; 
+  background-color: #ccc;
+  color: black;
 }
 
 table {
@@ -52,11 +52,11 @@ td {
 }
 
 tr:nth-child(odd) {
-  background: #CCC
+  background: #ccc;
 }
 
 tr:nth-child(even) {
-    background: #FFF
+  background: #fff;
 }
 
 input {
