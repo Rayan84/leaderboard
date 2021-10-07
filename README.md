@@ -1,4 +1,4 @@
-# leaderboard
+# Leaderboard
 
 Project Description
 This project aims to demonstrate medium-fidelity wireframes UI.
@@ -14,15 +14,15 @@ This project aims to demonstrate medium-fidelity wireframes UI.
 
 ### Screenshot
 
-![Image of ](images/screenshot.png)
+![Image of screenshot](images/screenshot.png)
 
 
 ### Live Demo
 
-[Live Link](https://rayan84.github.io/)
+[Live Link](https://rayan84.github.io/leaderboard/dist/)
 
 
-### Contributors
+### Author
 
 👤 Rayan Rassam
 * Github:[@Rayan84](https://github.com/Rayan84)
