@@ -22,7 +22,7 @@ This project aims to demonstrate medium-fidelity wireframes UI.
 [Live Link](https://rayan84.github.io/leaderboard/dist/)
 
 
-### Contributors
+### Author
 
 👤 Rayan Rassam
 * Github:[@Rayan84](https://github.com/Rayan84)
