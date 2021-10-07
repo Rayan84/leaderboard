@@ -1,3 +1,4 @@
+
 .main {
     padding: 50px;
 }
@@ -18,6 +19,25 @@ section {
 
 .right-section {
     float: right;
+}
+
+.refresh-button-container {
+    align-items: center;
+}
+
+#refresh-button {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+#refresh-button:hover {
+    background-color: #CCC; 
+    color:black; 
 }
 
 table {
