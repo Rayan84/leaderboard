@@ -20,10 +20,24 @@ const receiveData = async () => {
     }  
 }
 
+const validateInput = (player, points) => {
+    if (player.value == '' || PushSubscriptionOptions.value == '') {
+        player.style.backgroundColor = 'red';
+        points.style.backgroundColor = 'red';
+        setTimeout(() => {
+            player.style.backgroundColor = 'white';
+            points.style.backgroundColor = 'white';
+        }, 3000)
+        return false;
+    }
+}
+
 const submit = (e) => {
     e.preventDefault();
     let user = document.getElementById('user');
     let score = document.getElementById('score');
+    validateInput (user, score);
+  
     let xhr = new XMLHttpRequest();
     xhr.open('POST', scoresURL);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -37,8 +51,12 @@ const submit = (e) => {
     score.value = '';
 }
 
+
+
 const submitButton = document.getElementById('submit-button');
 submitButton.addEventListener('click', submit);
+
+
 
 
 const refreshButton = document.getElementById('refresh-button');
