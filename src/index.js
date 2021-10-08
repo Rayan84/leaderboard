@@ -1,7 +1,8 @@
 import './style.css';
 import { createTable } from './table';
 import { table } from './table';
-const scoresURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Ahr8VUxI7b1t5hzEwQCC/scores/'
+const scoresURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/4yIzMNcWW7DRdx34tn08/scores/'
+
 
 const receiveData = async () => {
   let data;
@@ -35,7 +36,7 @@ const validateInput = (e) => {
         }, 1500);
         return false;
     }else {
-        submitData;
+        submitData();
         const notification = document.getElementById('notification');
         notification.style.display = 'block';
         setTimeout(() => {
@@ -46,8 +47,7 @@ const validateInput = (e) => {
     }
 }
 
-const submitData = () => {
-      
+const submitData = () => {    
     let xhr = new XMLHttpRequest();
     xhr.open('POST', scoresURL);
     xhr.setRequestHeader('Content-Type', 'application/json');
