@@ -24,12 +24,12 @@ This project aims to demonstrate medium-fidelity wireframes UI.
 
 ### How to use:
 
-1- Clone the repo by running `git clone https://github.com/Rayan84/leaderboard.git`.
-2- Run `cd leaderboard`
-3- Run `npm install`
-4- Run `npm run start`
-5- In your browser got to: http://localhost:8080/
-6- Enjoy...
+* Clone the repo by running `git clone https://github.com/Rayan84/leaderboard.git`.
+* Run `cd leaderboard`
+* Run `npm install`
+* Run `npm run start`
+* In your browser got to: http://localhost:8080/
+* Enjoy...
 
 ### Author
 
