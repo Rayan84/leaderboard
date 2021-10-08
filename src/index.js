@@ -5,21 +5,17 @@ const scoresURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/ap
 
 
 const receiveData = async () => {
-  let data;
-  let xhr = new XMLHttpRequest();
-  await xhr.open('GET', scoresURL);
-  xhr.send();
-  xhr.onload = () => { 
+ 
+  const xhr = await fetch(scoresURL);
+  let data = await xhr.json();
       if(xhr.status === 200) {
-        data = JSON.parse(xhr.response);
         let scores = Object.values(data.result);
         table.innerHTML = '';
         for (let i = 0; i < scores.length; i++){
           createTable(scores[i].user, scores[i].score);
         }
       }
-    }  
-}
+    }
 
 let userInput = document.getElementById('user');
 let scoreInput = document.getElementById('score');
