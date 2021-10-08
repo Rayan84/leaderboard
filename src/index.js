@@ -20,44 +20,46 @@ const receiveData = async () => {
     }  
 }
 
-const validateInput = (player, points) => {
-    if (player.value == '' || PushSubscriptionOptions.value == '') {
-        player.style.backgroundColor = 'red';
-        points.style.backgroundColor = 'red';
+let userInput = document.getElementById('user');
+let scoreInput = document.getElementById('score');
+
+const validateInput = (e) => {
+    e.preventDefault();
+    if (userInput.value == '' || scoreInput.value == '') {
+        console.log('if is true');
+        userInput.classList.add('alert-color');
+        scoreInput.classList.add('alert-color');
         setTimeout(() => {
-            player.style.backgroundColor = 'white';
-            points.style.backgroundColor = 'white';
-        }, 3000)
+            userInput.classList.remove('alert-color');
+            scoreInput.classList.remove('alert-color');
+        }, 1500);
         return false;
+    }else {
+        submitData;
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 1500);
+        userInput.value = '';
+        scoreInput.value = '';
     }
 }
 
-const submit = (e) => {
-    e.preventDefault();
-    let user = document.getElementById('user');
-    let score = document.getElementById('score');
-    validateInput (user, score);
-  
+const submitData = () => {
+      
     let xhr = new XMLHttpRequest();
     xhr.open('POST', scoresURL);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
-        "user": user.value,
-        "score": score.value
-    })
+        "user": userInput.value,
+        "score": scoreInput.value
+      })
     );
-
-    user.value = '';
-    score.value = '';
 }
 
-
-
 const submitButton = document.getElementById('submit-button');
-submitButton.addEventListener('click', submit);
-
-
-
+submitButton.addEventListener('click', validateInput);
 
 const refreshButton = document.getElementById('refresh-button');
 refreshButton.addEventListener('click', receiveData);
