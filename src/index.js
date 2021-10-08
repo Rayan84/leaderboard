@@ -1,26 +1,6 @@
 import './style.css';
-const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/'
+import { createTable } from './list';
 const scoresURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Ahr8VUxI7b1t5hzEwQCC/scores'
-
-
-const createGame = async () => {
-
-  let xhr = new XMLHttpRequest();
-  xhr.open('POST',  `${baseURL}games/`);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({
-    'name': 'my cool new game'
-    })
-  )
-  xhr.responseType = 'json';
-  await xhr.response;
-  //console.log(xhr)
-}
-
-
-createGame();
-
-
 
 const receiveData = async () => {
   let data;
@@ -30,10 +10,9 @@ const receiveData = async () => {
   xhr.onload = () => { 
       if(xhr.status === 200) {
         data = JSON.parse(xhr.response);
-        data = Object.values(data.result);
-     //   console.log(data.length);
-        for (let i = 0; i < data.length; i++){
-      //      console.log(data[i])
+        let scores = Object.values(data.result);
+        for (let i = 0; i < scores.length; i++){
+            createTable(scores[i])
         }
       }else {
           console.log(`error ${xhr.status}`)
