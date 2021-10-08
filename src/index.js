@@ -43,3 +43,4 @@ submitButton.addEventListener('click', submit);
 
 const refreshButton = document.getElementById('refresh-button');
 refreshButton.addEventListener('click', receiveData);
+receiveData();
