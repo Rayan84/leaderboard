@@ -1,6 +1,34 @@
+@font-face {
+  font-family: 'ArchitectsDaughter';
+  src: url(./assets/fonts/ArchitectsDaughter-Regular.ttf);
+}
+
+* {
+  font-family: ArchitectsDaughter, sans-serif;
+}
 
 .main {
   padding: 50px;
+}
+
+.max-height-80-vh {
+  max-height: 70vh;
+}
+
+#notification {
+  position: absolute;
+  margin: auto;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: burlywood;
+  font-size: 2rem;
+  z-index: 1000;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(121, 170, 124, 1) 0%, rgba(52, 52, 8, 1) 80%);
+  padding: 26px;
+  border-radius: 12px;
+  display: none;
 }
 
 .display-flex {
@@ -17,6 +45,10 @@ section {
   padding: 40px;
 }
 
+#first-section {
+  overflow: scroll;
+}
+
 .right-section {
   float: right;
 }
@@ -26,8 +58,8 @@ section {
 }
 
 #refresh-button {
-  background-color: black;
-  color: white;
+  background-color: beige;
+  color: red;
   font-weight: bold;
   padding-left: 16px;
   padding-right: 16px;
@@ -50,6 +82,8 @@ table {
 td {
   padding: 10px;
   border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 tr:nth-child(odd) {
@@ -64,4 +98,10 @@ tr:nth-child(even) {
 input {
   display: block;
   margin: 15px;
+  border-radius: 5px;
+}
+
+.alert-color {
+  color: white;
+  border: solid rgb(170, 118, 118) 2px;
 }

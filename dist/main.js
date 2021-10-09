@@ -50,7 +50,18 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\nfunction asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }\n\nfunction _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err); } _next(undefined); }); }; }\n\n\nvar baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';\nvar scoresURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Ahr8VUxI7b1t5hzEwQCC/scores';\n\nvar createGame = /*#__PURE__*/function () {\n  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {\n    var xhr;\n    return regeneratorRuntime.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            xhr = new XMLHttpRequest();\n            xhr.open('POST', \"\".concat(baseURL, \"games/\"));\n            xhr.setRequestHeader('Content-Type', 'application/json');\n            xhr.send(JSON.stringify({\n              'name': 'my cool new game'\n            }));\n            xhr.responseType = 'json';\n            _context.next = 7;\n            return xhr.response;\n\n          case 7:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee);\n  }));\n\n  return function createGame() {\n    return _ref.apply(this, arguments);\n  };\n}();\n\ncreateGame();\n\nvar receiveData = /*#__PURE__*/function () {\n  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {\n    var data, xhr;\n    return regeneratorRuntime.wrap(function _callee2$(_context2) {\n      while (1) {\n        switch (_context2.prev = _context2.next) {\n          case 0:\n            xhr = new XMLHttpRequest();\n            _context2.next = 3;\n            return xhr.open('GET', scoresURL);\n\n          case 3:\n            xhr.send();\n\n            xhr.onload = function () {\n              if (xhr.status === 200) {\n                data = JSON.parse(xhr.response);\n                data = Object.values(data.result); //   console.log(data.length);\n\n                for (var i = 0; i < data.length; i++) {//      console.log(data[i])\n                }\n              } else {\n                console.log(\"error \".concat(xhr.status));\n              }\n            };\n\n          case 5:\n          case \"end\":\n            return _context2.stop();\n        }\n      }\n    }, _callee2);\n  }));\n\n  return function receiveData() {\n    return _ref2.apply(this, arguments);\n  };\n}();\n\nvar refreshButton = document.getElementById('refresh-button');\nrefreshButton.addEventListener('click', receiveData);\n\n//# sourceURL=webpack://leaderboard/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./table */ \"./src/table.js\");\nfunction asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }\n\nfunction _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err); } _next(undefined); }); }; }\n\n\n\n\nvar scoresURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/4yIzMNcWW7DRdx34tn08/scores/';\n\nvar receiveData = /*#__PURE__*/function () {\n  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {\n    var xhr, data, scores, i;\n    return regeneratorRuntime.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            _context.next = 2;\n            return fetch(scoresURL);\n\n          case 2:\n            xhr = _context.sent;\n            _context.next = 5;\n            return xhr.json();\n\n          case 5:\n            data = _context.sent;\n\n            if (xhr.status === 200) {\n              scores = Object.values(data.result);\n              _table__WEBPACK_IMPORTED_MODULE_1__.table.innerHTML = '';\n\n              for (i = 0; i < scores.length; i++) {\n                (0,_table__WEBPACK_IMPORTED_MODULE_1__.createTable)(scores[i].user, scores[i].score);\n              }\n            }\n\n          case 7:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee);\n  }));\n\n  return function receiveData() {\n    return _ref.apply(this, arguments);\n  };\n}();\n\nvar userInput = document.getElementById('user');\nvar scoreInput = document.getElementById('score');\n\nvar validateInput = function validateInput(e) {\n  e.preventDefault();\n\n  if (userInput.value == '' || scoreInput.value == '') {\n    console.log('if is true');\n    userInput.classList.add('alert-color');\n    scoreInput.classList.add('alert-color');\n    setTimeout(function () {\n      userInput.classList.remove('alert-color');\n      scoreInput.classList.remove('alert-color');\n    }, 1500);\n    return false;\n  } else {\n    submitData();\n    var notification = document.getElementById('notification');\n    notification.style.display = 'block';\n    setTimeout(function () {\n      notification.style.display = 'none';\n    }, 1500);\n    userInput.value = '';\n    scoreInput.value = '';\n  }\n};\n\nvar submitData = function submitData() {\n  var xhr = new XMLHttpRequest();\n  xhr.open('POST', scoresURL);\n  xhr.setRequestHeader('Content-Type', 'application/json');\n  xhr.send(JSON.stringify({\n    \"user\": userInput.value,\n    \"score\": scoreInput.value\n  }));\n};\n\nvar submitButton = document.getElementById('submit-button');\nsubmitButton.addEventListener('click', validateInput);\nvar refreshButton = document.getElementById('refresh-button');\nrefreshButton.addEventListener('click', receiveData);\nreceiveData();\n\n//# sourceURL=webpack://leaderboard/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/table.js":
+/*!**********************!*\
+  !*** ./src/table.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"table\": () => (/* binding */ table),\n/* harmony export */   \"createTable\": () => (/* binding */ createTable)\n/* harmony export */ });\nvar table = document.getElementById('table');\nvar createTable = function createTable(name, score) {\n  var tr = document.createElement('TR');\n  var nameTD = document.createElement('TD');\n  var scoreTD = document.createElement('TD');\n  nameTD.innerHTML = name;\n  scoreTD.innerHTML = score;\n  tr.appendChild(nameTD);\n  tr.appendChild(scoreTD);\n  table.appendChild(tr);\n};\n\n//# sourceURL=webpack://leaderboard/./src/table.js?");
 
 /***/ }),
 
@@ -3189,7 +3200,7 @@ eval("__webpack_require__(/*! ../modules/web.timers */ \"./node_modules/core-js/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"\\n.main {\\n  padding: 50px;\\n}\\n\\n.display-flex {\\n  display: flex;\\n}\\n\\n.justify-content-space-between {\\n  justify-content: space-between;\\n}\\n\\nsection {\\n  margin: 10px;\\n  width: 35%;\\n  padding: 40px;\\n}\\n\\n.right-section {\\n  float: right;\\n}\\n\\n.refresh-button-container {\\n  align-items: center;\\n}\\n\\n#refresh-button {\\n  background-color: black;\\n  color: white;\\n  font-weight: bold;\\n  padding-left: 16px;\\n  padding-right: 16px;\\n  height: 30px;\\n  vertical-align: middle;\\n}\\n\\n#refresh-button:hover {\\n  background-color: #ccc;\\n  color: black;\\n}\\n\\ntable {\\n  border: solid lightgray 1px;\\n  width: 100%;\\n  border-radius: 6px;\\n  padding: 20px;\\n}\\n\\ntd {\\n  padding: 10px;\\n}\\n\\ntr:nth-child(odd) {\\n  background: #ccc;\\n}\\n\\ntr:nth-child(even) {\\n  background: #fff;\\n}\\n\\ninput {\\n  display: block;\\n  margin: 15px;\\n}\\n\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://leaderboard/./src/style.css?./node_modules/css-loader/dist/cjs.js");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/getUrl.js */ \"./node_modules/css-loader/dist/runtime/getUrl.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);\n// Imports\n\n\n\nvar ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ./assets/fonts/ArchitectsDaughter-Regular.ttf */ \"./src/assets/fonts/ArchitectsDaughter-Regular.ttf\"), __webpack_require__.b);\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\nvar ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"@font-face {\\n  font-family: 'ArchitectsDaughter';\\n  src: url(\" + ___CSS_LOADER_URL_REPLACEMENT_0___ + \");\\n}\\n\\n* {\\n  font-family: ArchitectsDaughter, sans-serif;\\n}\\n\\n.main {\\n  padding: 50px;\\n}\\n\\n.max-height-80-vh {\\n  max-height: 70vh;\\n}\\n\\n#notification {\\n  position: absolute;\\n  margin: auto;\\n  top: 10%;\\n  left: 50%;\\n  transform: translate(-50%, -50%);\\n  color: burlywood;\\n  font-size: 2rem;\\n  z-index: 1000;\\n  background: rgb(2, 0, 36);\\n  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(121, 170, 124, 1) 0%, rgba(52, 52, 8, 1) 80%);\\n  padding: 26px;\\n  border-radius: 12px;\\n  display: none;\\n}\\n\\n.display-flex {\\n  display: flex;\\n}\\n\\n.justify-content-space-between {\\n  justify-content: space-between;\\n}\\n\\nsection {\\n  margin: 10px;\\n  width: 35%;\\n  padding: 40px;\\n}\\n\\n#first-section {\\n  overflow: scroll;\\n}\\n\\n.right-section {\\n  float: right;\\n}\\n\\n.refresh-button-container {\\n  align-items: center;\\n}\\n\\n#refresh-button {\\n  background-color: beige;\\n  color: red;\\n  font-weight: bold;\\n  padding-left: 16px;\\n  padding-right: 16px;\\n  height: 30px;\\n  vertical-align: middle;\\n}\\n\\n#refresh-button:hover {\\n  background-color: #ccc;\\n  color: black;\\n}\\n\\ntable {\\n  border: solid lightgray 1px;\\n  width: 100%;\\n  border-radius: 6px;\\n  padding: 20px;\\n}\\n\\ntd {\\n  padding: 10px;\\n  border-radius: 5px;\\n  font-size: 1.2rem;\\n  font-weight: bold;\\n}\\n\\ntr:nth-child(odd) {\\n  background: #ccc;\\n  color: beige;\\n}\\n\\ntr:nth-child(even) {\\n  background: #fff;\\n}\\n\\ninput {\\n  display: block;\\n  margin: 15px;\\n  border-radius: 5px;\\n}\\n\\n.alert-color {\\n  color: white;\\n  border: solid rgb(170, 118, 118) 2px;\\n}\\n\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://leaderboard/./src/style.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -3201,6 +3212,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\nmodule.exports = function (cssWithMappingToString) {\n  var list = []; // return the list of modules as css string\n\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = \"\";\n      var needLayer = typeof item[5] !== \"undefined\";\n\n      if (item[4]) {\n        content += \"@supports (\".concat(item[4], \") {\");\n      }\n\n      if (item[2]) {\n        content += \"@media \".concat(item[2], \" {\");\n      }\n\n      if (needLayer) {\n        content += \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\");\n      }\n\n      content += cssWithMappingToString(item);\n\n      if (needLayer) {\n        content += \"}\";\n      }\n\n      if (item[2]) {\n        content += \"}\";\n      }\n\n      if (item[4]) {\n        content += \"}\";\n      }\n\n      return content;\n    }).join(\"\");\n  }; // import a list of modules into the list\n\n\n  list.i = function i(modules, media, dedupe, supports, layer) {\n    if (typeof modules === \"string\") {\n      modules = [[null, modules, undefined]];\n    }\n\n    var alreadyImportedModules = {};\n\n    if (dedupe) {\n      for (var _i = 0; _i < this.length; _i++) {\n        var id = this[_i][0];\n\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n\n    for (var _i2 = 0; _i2 < modules.length; _i2++) {\n      var item = [].concat(modules[_i2]);\n\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        continue;\n      }\n\n      if (typeof layer !== \"undefined\") {\n        if (typeof item[5] === \"undefined\") {\n          item[5] = layer;\n        } else {\n          item[1] = \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\").concat(item[1], \"}\");\n          item[5] = layer;\n        }\n      }\n\n      if (media) {\n        if (!item[2]) {\n          item[2] = media;\n        } else {\n          item[1] = \"@media \".concat(item[2], \" {\").concat(item[1], \"}\");\n          item[2] = media;\n        }\n      }\n\n      if (supports) {\n        if (!item[4]) {\n          item[4] = \"\".concat(supports);\n        } else {\n          item[1] = \"@supports (\".concat(item[4], \") {\").concat(item[1], \"}\");\n          item[4] = supports;\n        }\n      }\n\n      list.push(item);\n    }\n  };\n\n  return list;\n};\n\n//# sourceURL=webpack://leaderboard/./node_modules/css-loader/dist/runtime/api.js?");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+"use strict";
+eval("\n\nmodule.exports = function (url, options) {\n  if (!options) {\n    options = {};\n  }\n\n  if (!url) {\n    return url;\n  }\n\n  url = String(url.__esModule ? url.default : url); // If url is already wrapped in quotes, remove them\n\n  if (/^['\"].*['\"]$/.test(url)) {\n    url = url.slice(1, -1);\n  }\n\n  if (options.hash) {\n    url += options.hash;\n  } // Should url be wrapped?\n  // See https://drafts.csswg.org/css-values-3/#urls\n\n\n  if (/[\"'() \\t\\n]|(%20)/.test(url) || options.needQuotes) {\n    return \"\\\"\".concat(url.replace(/\"/g, '\\\\\"').replace(/\\n/g, \"\\\\n\"), \"\\\"\");\n  }\n\n  return url;\n};\n\n//# sourceURL=webpack://leaderboard/./node_modules/css-loader/dist/runtime/getUrl.js?");
 
 /***/ }),
 
@@ -3290,6 +3312,17 @@ eval("\n\n/* istanbul ignore next  */\nfunction apply(styleElement, options, obj
 "use strict";
 eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElement) {\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = css;\n  } else {\n    while (styleElement.firstChild) {\n      styleElement.removeChild(styleElement.firstChild);\n    }\n\n    styleElement.appendChild(document.createTextNode(css));\n  }\n}\n\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack://leaderboard/./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
 
+/***/ }),
+
+/***/ "./src/assets/fonts/ArchitectsDaughter-Regular.ttf":
+/*!*********************************************************!*\
+  !*** ./src/assets/fonts/ArchitectsDaughter-Regular.ttf ***!
+  \*********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("module.exports = __webpack_require__.p + \"8f0dc296705bdd74014c.ttf\";\n\n//# sourceURL=webpack://leaderboard/./src/assets/fonts/ArchitectsDaughter-Regular.ttf?");
+
 /***/ })
 
 /******/ 	});
@@ -3318,6 +3351,9 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -3343,6 +3379,18 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -3357,6 +3405,52 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"main": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		// no jsonp function
 /******/ 	})();
 /******/ 	
 /************************************************************************/
