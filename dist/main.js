@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 /*
  * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
  * This devtool is neither made for production nor for readable output files.
@@ -3321,7 +3319,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-eval("module.exports = __webpack_require__.p + \"8f0dc296705bdd74014c.ttf\";\n\n//# sourceURL=webpack://leaderboard/./src/assets/fonts/ArchitectsDaughter-Regular.ttf?");
+eval("module.exports = __webpack_require__.p + \"a8311c892cd6be123bed.ttf\";\n\n//# sourceURL=webpack://leaderboard/./src/assets/fonts/ArchitectsDaughter-Regular.ttf?");
 
 /***/ })
 

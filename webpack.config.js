@@ -33,14 +33,9 @@ module.exports = {
       },
 
       {
-        test: /\.(woff|woff2|ttf)$/,
-        use: {
-          loader: 'url-loader',
-        },
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
-      
-      
-
     ],
   },
  };
